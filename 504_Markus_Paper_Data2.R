@@ -7,17 +7,17 @@
 
 rm(list=ls())
 
-setwd("D:/Dropbox/3_PLSC504/Paper/Survival/")
+setwd("D:/Dropbox/3_PLSC504/Paper/Survival/Data")
 
 library(foreign)
 
 #House data
-House <- read.dta("Data/berry_fowler/House.dta") #House <- read.table("Data/berry_fowler/House.tab", sep="\t", header=TRUE)
+House <- read.dta("House.dta") #House <- read.table("Data/berry_fowler/House.tab", sep="\t", header=TRUE)
 #remove unneeded years from election data
 House <- subset(House, year%in%c(1984,1986,1988,1990,1992,1994,1996,1998,2000,2002,2004,2006,2008,2010))
 
 #Election data
-Election <- read.dta("Data/incumbency_advantage/JOPrepfile1.dta")
+Election <- read.dta("JOPrepfile1.dta")
 #remove unneeded years from election data
 Election <- subset(Election, year%in%c(1984,1986,1988,1990,1992,1994,1996,1998,2000,2002,2004,2006,2008,2010))
 Election <- subset(Election, select=c(year,state,stcd,inc,dv,dvp,dpres,midterm,cexpx,iexpx,incwin,south))
@@ -104,4 +104,4 @@ for (i in 1:nrow(House)){
 #log population
 House$log_pop <- log(House$pop)
 
-#save(file="Data/House.Rdata", House)
+#save(file="House.Rdata", House)
